@@ -36,12 +36,23 @@ This application demonstrates Q-Learning, a model-free reinforcement learning al
 
 ## Running the Application
 
+Basic usage:
 ```python
 from QAgentVisualizer import QAgentVisualizer
 
 app = QAgentVisualizer(size=6)
 app.create_window()
 ```
+
+Command-line usage with custom parameters:
+```bash
+python QAgentVisualizer.py --size 8 --reward 150 --gain 0.7
+```
+
+Available command-line arguments:
+- `--size`: Size of the grid (default: 6)
+- `--reward`: Reward value for reaching the goal (default: 100)
+- `--gain`: Learning rate/gain (default: 0.5)
 
 ## Technical Details
 

@@ -221,3 +221,7 @@ class ApplicationWindow:
 
     def stopSquare(self):
         self.stop = True
+
+if __name__ == '__main__':
+    app = ApplicationWindow(size = 6)
+    app.create_window()

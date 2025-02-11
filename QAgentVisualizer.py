@@ -1,18 +1,36 @@
-from tkinter import Tk
-from tkinter import Canvas
-from tkinter import Button
-from tkinter import TOP
+import argparse
+from tkinter import TOP, Button, Canvas, Tk
+
 import numpy as np
 
 
+def parse_arguments():
+    parser = argparse.ArgumentParser(
+        description="Q-Learning Visualization with customizable parameters"
+    )
+    parser.add_argument(
+        "--size", type=int, default=6, help="Size of the grid (default: 6)"
+    )
+    parser.add_argument(
+        "--reward",
+        type=float,
+        default=100,
+        help="Reward value for reaching the goal (default: 100)",
+    )
+    parser.add_argument(
+        "--gain", type=float, default=0.5, help="Learning rate/gain (default: 0.5)"
+    )
+    return parser.parse_args()
+
+
 class QAgentVisualizer:
-    def __init__(self, size):
+    def __init__(self, size=6, reward=100, gain=0.5):
         self.window = Tk()
         self.window.title("Q-Learning")
         self.size = size
         self.size_of_square = 60
-        self.reward = 100
-        self.gain = 0.5
+        self.reward = reward
+        self.gain = gain
         self.posX = 0
         self.posY = 0
         self.Q = np.zeros((np.square(size), 4))
@@ -318,5 +336,6 @@ class QAgentVisualizer:
 
 
 if __name__ == "__main__":
-    app = QAgentVisualizer(size=6)
+    args = parse_arguments()
+    app = QAgentVisualizer(size=args.size, reward=args.reward, gain=args.gain)
     app.create_window()
